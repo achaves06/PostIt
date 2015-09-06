@@ -1,8 +1,8 @@
 <h3> Categories </h3>
 
-<ul class="well">
+<ul class="well unstyled">
   <% @categories.each do |category| %>
-    <li><%= category.name %></li>
+    <li><%=link_to category.name, edit_category_path(category) %></li>
   <% end %>
 
 </ul>
