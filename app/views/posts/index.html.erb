@@ -1,25 +1,6 @@
-<h3>All Posts</h3>
+<%= render 'shared/content_title', title: "All Posts" %>
 <hr/>
 
 <% @posts.each do |post| %>
-  <% @categories = post.categories %>
-  <div class="row">
-  <div class = "post span8 well">
-    <%= render @categories %>
-    <small style="float:right"> <%= link_to "Edit", edit_post_path(post) %> </small>
-    <h5> <%= link_to post.title, post.url %> </h5> <!--post.url -->
-    <p> <%= post.description %> </p>
-    <p>
-      <span class="quiet">Posted by </span>
-      <%= post.creator.first_name + " " + post.creator.last_name %>
-      <small>at <%= post.created_at %></small>
-    </p>
-    <%
-    total_comments = post.comments.length
-    total_comments.nil? ? total_comments = '0' :  total_comments = total_comments.to_s
-    comment_string = total_comments == 1 ? "Comment" : "Comments" %>
-    <small class="quiet"> <%= link_to total_comments + " " + comment_string, post_path(post)%>
-    </small>
-  </div>
-</div>
+  <%= render 'post', post: post %>
 <% end %>

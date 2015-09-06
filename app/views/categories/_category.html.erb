@@ -1,8 +1,1 @@
-<h3> Categories </h3>
-
-<ul>
-  <% @categories.each do |category| %>
-    <li><%= category.name %></li>
-  <% end %>
-
-</ul>
+<span class="badge"> <%= link_to category.name, category_path(category) %> </span>

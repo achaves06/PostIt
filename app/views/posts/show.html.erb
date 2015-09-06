@@ -1,9 +1,3 @@
 <h4 class="lead"><%= @post.title %></h4>
 <hr/>
-<%= render @categories %>
-<p> <%= @post.description %> </p>
-<p>
-  <span class="quiet">Posted by </span>
-   <%= @post.creator.first_name + " " + @post.creator.last_name %>
-   <small>at <%= @post.created_at %></small>
-  </p>
+<%= render 'post', post: @post %>
