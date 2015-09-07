@@ -1,0 +1,11 @@
+<div class="row">
+  <div class = "comment span8 well">
+    
+    <p> <%= comment.body %> </p>
+    <p>
+      <span class="quiet">Posted by </span>
+      <%= comment.creator.first_name + " " + comment.creator.last_name %>
+      <small>at <%= comment.created_at %></small>
+    </p>
+  </div>
+</div>

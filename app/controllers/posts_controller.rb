@@ -9,15 +9,24 @@ class PostsController < ApplicationController
 
   def show
     @categories = @post.categories
+    @comments = @post.comments.order('id DESC')
+    @comment = Comment.new
   end
 
   def new
     @post = Post.new
+    @categories = Category.all.order('name ASC')
   end
 
   def create
     @user = User.first
     @post = @user.posts.build(post_params)
+    binding.pry
+    params[:post][:category_ids].delete_if{ |x| x.empty? } # multi selects come with first array as empty need to remove this to avoid assigning nil category_id
+    @category_ids = params[:post][:category_ids]
+    @post.category_ids = @category_ids if !@category_ids.nil?
+
+    binding.pry
     if @post.save
       flash[:success] = "Your post was successfully created"
       redirect_to posts_path
