@@ -7,7 +7,7 @@
   <%= f.label :description %>
   <%= f.text_area :description, rows: 5 %>
   <br/>
-   <%= f.collection_select(:category_ids, @categories, :id, :name, {include_blank: 'Select a Category'}, {multiple: true}) %>
+   <%= f.collection_select(:category_ids, @categories, :id, :name, {}, {multiple: true}) %>
   <br/>
   <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>

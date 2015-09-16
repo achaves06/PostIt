@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: [:edit, :update, :show]
+  before_action :require_user, except: [:index, :show]
 
 
   def index
@@ -19,26 +20,24 @@ class PostsController < ApplicationController
   end
 
   def create
-    @user = User.first
+    @user = current_user
     @post = @user.posts.build(post_params)
-    binding.pry
-    params[:post][:category_ids].delete_if{ |x| x.empty? } # multi selects come with first array as empty need to remove this to avoid assigning nil category_id
-    @category_ids = params[:post][:category_ids]
-    @post.category_ids = @category_ids if !@category_ids.nil?
-
-    binding.pry
+    params[:post][:category_ids].delete_if{ |x| x.empty? } 
     if @post.save
       flash[:success] = "Your post was successfully created"
       redirect_to posts_path
     else
+      @categories = Category.all.order('name ASC')
       render 'new'
     end
   end
 
   def edit
-
+    @categories = Category.all.order('name ASC')
   end
+
   def update
+    params[:post][:category_ids].delete_if{ |x| x.empty? } 
     if @post.update(post_params)
       flash[:success] = "Your post was successfully updated"
       redirect_to posts_path
@@ -54,6 +53,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :url, :description, :user_id)
+    params.require(:post).permit(:title, :url, :description, :user_id, category_ids: [])
   end
 end

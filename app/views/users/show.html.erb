@@ -1,0 +1,18 @@
+<div>
+	<%= render 'edit_form' %>
+</div>
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#posts" data-toggle="tab">My Posts (<%= current_user.posts.size %>) </a></li>
+    <li><a href="#comments" data-toggle="tab">My Comments (<%= current_user.comments.size %>)</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="posts">
+			<%= render current_user.posts %>
+    </div>
+    <div class="tab-pane" id="comments">
+      <%= render current_user.comments.order('id DESC') %>
+    </div>
+  </div>
+</div>

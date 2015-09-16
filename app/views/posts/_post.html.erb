@@ -2,13 +2,15 @@
   <div class = "post span8 well">
     <% @categories = post.categories %>
     <%= render @categories %>
+    <% if current_user == post.creator %>
     <small style="float:right"> <%= link_to "Edit", edit_post_path(post) %> </small>
-    <h5> <%= link_to post.title, post.url %> </h5> <!--post.url -->
+    <% end %>
+    <h5> <%= link_to post.title, fix_url(post.url) %> </h5> <!--post.url -->
     <p> <%= post.description %> </p>
     <p>
       <span class="quiet">Posted by </span>
       <%= post.creator.first_name + " " + post.creator.last_name %>
-      <small>at <%= post.created_at %></small>
+      <small>on <%= friendly_date(post.created_at) %></small>
     </p>
     <%
     total_comments = post.comments.length
