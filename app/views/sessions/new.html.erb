@@ -1,13 +1,9 @@
 <div class="span4 offset3">
-
-
-
-<%= form_tag 'login', {:class => "form-horizontal"} do %>
-	
+	<%= form_tag 'login', {:class => "form-horizontal"} do %>
 		<div class="control-group">
 	    	<legend> Existing User Log In </legend>
 	  </div>
-	<div class="control-group">
+		<div class="control-group">
 			<%= label_tag :username, nil, class: 'control-label' %>
 			<div class="controls">
 				<%= text_field_tag :username %>
@@ -15,8 +11,8 @@
 		<div class="control-group">
 			<%= label_tag :password, nil, class: 'control-label' %>
 			<div class="controls">
-		  	<%= password_field_tag :password%>
-		  </div>
+	  	<%= password_field_tag :password%>
+			</div>
 		</div>
 		<div class="control-group">
 	    <div class="controls">
