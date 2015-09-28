@@ -1,4 +1,15 @@
 <div class="row">
+  <div class="well span1 text-center">
+    <%= link_to vote_post_path(post, vote: true), method: 'post' do %>
+      <i class="icon-arrow-up"></i>
+    <% end %>
+    <br/>
+    <%= post.total_votes %>
+    <br/>
+    <%= link_to vote_post_path(post, vote: false), method: 'post' do %>
+      <i class="icon-arrow-down"></i>
+    <% end %>
+  </div>
   <div class = "post span8 well">
     <% @categories = post.categories %>
     <%= render @categories %>
