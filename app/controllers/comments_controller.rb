@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
       flash[:success] = "Your vote has been counted"
       redirect_to :back
     else
-      flash[:danger] = "Your vote was not counted, you an only vote once"
+      flash[:danger] = "Your vote was not counted, you can only vote once"
       redirect_to :back
     end
   end

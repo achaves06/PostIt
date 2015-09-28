@@ -5,7 +5,8 @@ class PostsController < ApplicationController
 
 
   def index
-    @posts = Post.all.order('created_at DESC')
+   @posts = Post.all.sort_by{|x| [x.total_votes, x.created_at]}.reverse
+  #@posts = Post.all.order('created_at DESC')
   end
 
   def show
@@ -38,7 +39,7 @@ class PostsController < ApplicationController
       flash[:success] = "Your vote has been counted"
       redirect_to :back
     else
-      flash[:danger] = "Your vote was not counted, you an only vote once"
+      flash[:danger] = "Your vote was not counted, you can only vote once"
       redirect_to :back
     end
   end
